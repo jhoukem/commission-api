@@ -13,7 +13,7 @@ class InMemoryCommissionRuleRepository : CommissionRuleRepository {
     fun initializeRules(e: ApplicationReadyEvent) {
         val defaultRules = listOf(
             CommissionRule(
-                "1", "Rule 1", Rate(5),
+                "Rule 1", Rate(5),
                 Or(
                     listOf(
                         CustomerLocation("FR"), FreelanceLocation("FR")
@@ -21,7 +21,7 @@ class InMemoryCommissionRuleRepository : CommissionRuleRepository {
                 )
             ),
             CommissionRule(
-                "2", "Rule 2", Rate(6),
+                "Rule 2", Rate(6),
                 And(
                     listOf(
                         CustomerLocation("FR"), FreelanceLocation("FR")
@@ -35,6 +35,10 @@ class InMemoryCommissionRuleRepository : CommissionRuleRepository {
 
     override fun findAllRules(): List<CommissionRule> {
         return rules
+    }
+
+    override fun add(rule: CommissionRule) {
+        rules.add(rule)
     }
 
 }

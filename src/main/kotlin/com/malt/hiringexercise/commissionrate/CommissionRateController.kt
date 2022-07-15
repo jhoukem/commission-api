@@ -16,4 +16,10 @@ class CommissionRateController constructor(private val commissionRateService: Co
         return ResponseEntity.ok(commission);
     }
 
+    @PostMapping("rules")
+    fun addRule(@RequestBody createCommissionRateRuleDTO: CreateCommissionRuleDTO): ResponseEntity<Void> {
+        commissionRateService.create(createCommissionRateRuleDTO)
+        return ResponseEntity.ok().build()
+    }
+
 }

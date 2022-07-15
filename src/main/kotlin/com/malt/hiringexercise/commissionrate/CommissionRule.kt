@@ -1,9 +1,10 @@
 package com.malt.hiringexercise.commissionrate
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.JsonTypeName
 import java.time.Period
 
 data class CommissionRule(
-    val id: String,
     val name: String,
     val rate: Rate,
     val restriction: Restriction
@@ -11,6 +12,7 @@ data class CommissionRule(
 
 data class Rate(val percent: Int)
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 sealed class Restriction
 class Or(val restrictions: List<Restriction>) : Restriction()
 class And(val restrictions: List<Restriction>) : Restriction()

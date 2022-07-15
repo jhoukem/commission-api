@@ -20,6 +20,15 @@ class CommissionRateService constructor(
         return CommissionRateResponseDTO(commissionRule.rate.percent, commissionRule.name);
     }
 
+    fun create(createCommissionRuleDTO: CreateCommissionRuleDTO) {
+        val commissionRule = CommissionRule(
+            createCommissionRuleDTO.name,
+            Rate(createCommissionRuleDTO.rate),
+            createCommissionRuleDTO.restriction
+        )
+        this.repository.add(commissionRule)
+    }
+
     companion object {
         val DEFAULT_COMMISSION_RATE = CommissionRateResponseDTO(10)
     }
