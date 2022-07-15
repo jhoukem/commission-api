@@ -1,5 +1,5 @@
 package com.malt.hiringexercise.geoip
 
 interface GeoIpService {
-    fun getCountryCode(ip: String): String
+    fun getCountryCode(ip: String): String?
 }

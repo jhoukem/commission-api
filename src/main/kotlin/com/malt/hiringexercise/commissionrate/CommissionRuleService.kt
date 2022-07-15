@@ -65,7 +65,7 @@ class CommissionRuleService constructor(private val geoIpService: GeoIpService) 
         restriction: CustomerLocation,
         commissionRateRequestDTO: CommissionRateRequestDTO
     ): Boolean {
-        val customerCountryCode = geoIpService.getCountryCode(commissionRateRequestDTO.customer.ip)
+        val customerCountryCode = geoIpService.getCountryCode(commissionRateRequestDTO.customer.ip) ?: false
         return restriction.countryCode == customerCountryCode
     }
 
@@ -73,7 +73,7 @@ class CommissionRuleService constructor(private val geoIpService: GeoIpService) 
         restriction: FreelanceLocation,
         commissionRateRequestDTO: CommissionRateRequestDTO
     ): Boolean {
-        val customerCountryCode = geoIpService.getCountryCode(commissionRateRequestDTO.freelancer.ip)
+        val customerCountryCode = geoIpService.getCountryCode(commissionRateRequestDTO.freelancer.ip) ?: false
         return restriction.countryCode == customerCountryCode
     }
 }
