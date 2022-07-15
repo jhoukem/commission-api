@@ -32,23 +32,25 @@ class CommissionRuleService constructor(private val geoIpService: GeoIpService) 
         commissionRateRequestDTO: CommissionRateRequestDTO
     ): Boolean {
         val missionDuration = stringToPeriod(commissionRateRequestDTO.mission.length) ?: return false
-        return compareTo(missionDuration, restriction.greaterThan) > 0;
+        return compareTo(missionDuration, restriction.greaterThan) > 0
     }
 
     private fun commercialRelationDurationHandler(
         restriction: CommercialRelationDuration,
         commissionRateRequestDTO: CommissionRateRequestDTO
     ): Boolean {
-        val firstMission = commissionRateRequestDTO.commercialRelation.firstMission ?: return false
+        if (commissionRateRequestDTO.commercialRelation == null) return false
+
+        val firstMission = commissionRateRequestDTO.commercialRelation.firstMission
         val lastMission = commissionRateRequestDTO.commercialRelation.lastMission ?: return false
 
-        val commercialRelationDuration = Period.between(firstMission.toLocalDate(), lastMission.toLocalDate());
-        return compareTo(commercialRelationDuration, restriction.greaterThan) > 0;
+        val commercialRelationDuration = Period.between(firstMission.toLocalDate(), lastMission.toLocalDate())
+        return compareTo(commercialRelationDuration, restriction.greaterThan) > 0
     }
 
     private fun stringToPeriod(periodAsString: String): Period? {
         return try {
-            Period.parse(periodAsString);
+            Period.parse(periodAsString)
         } catch (e: Exception) {
             null
         }
@@ -64,7 +66,7 @@ class CommissionRuleService constructor(private val geoIpService: GeoIpService) 
         commissionRateRequestDTO: CommissionRateRequestDTO
     ): Boolean {
         val customerCountryCode = geoIpService.getCountryCode(commissionRateRequestDTO.customer.ip)
-        return restriction.countryCode == customerCountryCode;
+        return restriction.countryCode == customerCountryCode
     }
 
     private fun freelanceLocationHandler(
@@ -72,6 +74,6 @@ class CommissionRuleService constructor(private val geoIpService: GeoIpService) 
         commissionRateRequestDTO: CommissionRateRequestDTO
     ): Boolean {
         val customerCountryCode = geoIpService.getCountryCode(commissionRateRequestDTO.freelancer.ip)
-        return restriction.countryCode == customerCountryCode;
+        return restriction.countryCode == customerCountryCode
     }
 }
