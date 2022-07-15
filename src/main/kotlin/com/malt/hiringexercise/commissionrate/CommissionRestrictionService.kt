@@ -6,7 +6,7 @@ import java.time.LocalDate
 import java.time.Period
 
 @Service
-class CommissionRuleService constructor(private val geoIpService: GeoIpService) {
+class CommissionRestrictionService constructor(private val geoIpService: GeoIpService) {
 
     fun validate(restriction: Restriction, commissionRateRequestDTO: CommissionRateRequestDTO): Boolean {
         return when (restriction) {

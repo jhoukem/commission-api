@@ -6,7 +6,7 @@ import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Repository
 
 @Repository
-class InMemoryRuleRepository : RuleRepository {
+class InMemoryCommissionRuleRepository : CommissionRuleRepository {
     private val rules: MutableList<CommissionRule> = ArrayList()
 
     @EventListener(ApplicationReadyEvent::class)

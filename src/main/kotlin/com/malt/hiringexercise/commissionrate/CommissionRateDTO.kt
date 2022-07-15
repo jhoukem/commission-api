@@ -15,3 +15,9 @@ data class Mission(val length: String)
 data class CommercialRelation(val firstMission: LocalDateTime, val lastMission: LocalDateTime?)
 
 
+data class CommissionRateResponseDTO(
+    val fees: Int,
+    val reason: String? = null,
+)
+
+
