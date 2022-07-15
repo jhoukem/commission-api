@@ -6,12 +6,16 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController("commissions")
-class CommissionRateController {
+class CommissionRateController constructor(private val commissionRateService: CommissionRateService) {
 
-
-    @PostMapping()
+    @PostMapping("/rate/compute")
     fun getCommission(@RequestBody commissionRateRequestDTO: CommissionRateRequestDTO): ResponseEntity<CommissionRateResponseDTO> {
-        return ResponseEntity.ok(null);
+        return try {
+            val commission = commissionRateService.computeCommission(commissionRateRequestDTO);
+            ResponseEntity.ok(commission);
+        } catch (e: Exception) {
+            ResponseEntity.badRequest().build();
+        }
     }
 
 }
