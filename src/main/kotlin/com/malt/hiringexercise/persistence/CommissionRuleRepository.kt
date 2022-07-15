@@ -1,6 +1,6 @@
 package com.malt.hiringexercise.persistence
 
-import com.malt.hiringexercise.commissionrate.CommissionRule
+import com.malt.hiringexercise.commission.CommissionRule
 
 interface CommissionRuleRepository {
     fun findAllRules(): List<CommissionRule>

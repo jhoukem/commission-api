@@ -1,6 +1,6 @@
 package com.malt.hiringexercise.persistence
 
-import com.malt.hiringexercise.commissionrate.*
+import com.malt.hiringexercise.commission.*
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Repository

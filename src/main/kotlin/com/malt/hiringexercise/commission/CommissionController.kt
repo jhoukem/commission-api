@@ -1,4 +1,4 @@
-package com.malt.hiringexercise.commissionrate
+package com.malt.hiringexercise.commission
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("commissions")
-class CommissionRateController constructor(private val commissionRateService: CommissionRateService) {
+class CommissionController constructor(private val commissionService: CommissionService) {
 
     @PostMapping("rate/compute")
     fun getCommission(@RequestBody commissionRateRequestDTO: CommissionRateRequestDTO): ResponseEntity<CommissionRateResponseDTO> {
-        val commission = commissionRateService.computeCommission(commissionRateRequestDTO);
+        val commission = commissionService.computeCommission(commissionRateRequestDTO);
         return ResponseEntity.ok(commission);
     }
 
     @PostMapping("rules")
-    fun addRule(@RequestBody createCommissionRateRuleDTO: CreateCommissionRuleDTO): ResponseEntity<Void> {
-        commissionRateService.create(createCommissionRateRuleDTO)
+    fun addRule(@RequestBody createCommissionRuleDTO: CreateCommissionRuleDTO): ResponseEntity<Void> {
+        commissionService.create(createCommissionRuleDTO)
         return ResponseEntity.ok().build()
     }
 

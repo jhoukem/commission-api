@@ -1,10 +1,10 @@
-package com.malt.hiringexercise.commissionrate
+package com.malt.hiringexercise.commission
 
 import com.malt.hiringexercise.persistence.CommissionRuleRepository
 import org.springframework.stereotype.Service
 
 @Service
-class CommissionRateService constructor(
+class CommissionService constructor(
     private val repository: CommissionRuleRepository,
     private val commissionRestrictionService: CommissionRestrictionService
 ) {

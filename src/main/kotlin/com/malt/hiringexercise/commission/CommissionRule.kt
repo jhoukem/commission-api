@@ -1,7 +1,6 @@
-package com.malt.hiringexercise.commissionrate
+package com.malt.hiringexercise.commission
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo
-import com.fasterxml.jackson.annotation.JsonTypeName
 import java.time.Period
 
 data class CommissionRule(

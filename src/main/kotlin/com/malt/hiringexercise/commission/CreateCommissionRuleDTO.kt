@@ -1,4 +1,4 @@
-package com.malt.hiringexercise.commissionrate
+package com.malt.hiringexercise.commission
 
 
 data class CreateCommissionRuleDTO(

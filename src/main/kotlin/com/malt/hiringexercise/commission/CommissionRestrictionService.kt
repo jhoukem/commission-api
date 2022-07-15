@@ -1,4 +1,4 @@
-package com.malt.hiringexercise.commissionrate
+package com.malt.hiringexercise.commission
 
 import com.malt.hiringexercise.geoip.GeoIpService
 import org.springframework.stereotype.Service
