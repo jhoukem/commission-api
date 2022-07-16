@@ -1,5 +1,6 @@
 package com.malt.hiringexercise.geoip
 
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -10,10 +11,11 @@ import org.springframework.stereotype.Service
 class IpStackService : GeoIpService {
 
     private final val mapper: ObjectMapper = jacksonObjectMapper()
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
     override fun getCountryCode(ip: String): String? {
 
-        val httpResponse = Unirest.get("https://api.ipstack.com/{ip}")
+        val httpResponse = Unirest.get("http://api.ipstack.com/{ip}")
             .header("accept", "application/json")
             .routeParam("ip", ip)
             .queryString("access_key", API_KEY)
