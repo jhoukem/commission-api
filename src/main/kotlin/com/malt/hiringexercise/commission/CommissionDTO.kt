@@ -15,7 +15,7 @@ data class Mission(val length: String)
 data class CommercialRelation(val firstMission: LocalDateTime, val lastMission: LocalDateTime?) {
     init {
         lastMission?.let {
-            require(it.isAfter(firstMission)) { "The lastMission date must be after the firstMission date" }
+            require(it.isEqual(firstMission) || it.isAfter(firstMission)) { "The lastMission date must be after the firstMission date" }
         }
     }
 }
