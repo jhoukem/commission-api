@@ -3,6 +3,7 @@ package com.malt.hiringexercise.commission
 import com.malt.hiringexercise.commission.CommissionControllerTest.Companion.createCommissionRateRequest
 import com.malt.hiringexercise.geoip.GeoIpService
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.*
 import java.time.LocalDateTime
@@ -13,11 +14,15 @@ class CommissionRestrictionServiceTest {
     private val geoIpServiceMock: GeoIpService = mock()
     private val commissionRestrictionService = CommissionRestrictionService(geoIpServiceMock)
 
+    @BeforeEach
+    fun cleanMocks() {
+        reset(geoIpServiceMock)
+    }
+
     @Test
     fun `validate customer location restriction`() {
         // Given.
-        val commissionRateRequestDTO =
-            createCommissionRateRequest("8.8.8.8", "8.8.8.9", "P1M", LocalDateTime.of(2020, 10, 5, 8, 10))
+        val commissionRateRequestDTO = createCommissionRateRequest()
         val restriction = CustomerLocation("ES")
         whenever(geoIpServiceMock.getCountryCode(any())).thenReturn("ES").thenReturn("FR")
 
@@ -34,8 +39,7 @@ class CommissionRestrictionServiceTest {
     @Test
     fun `validate freelance location restriction`() {
         // Given.
-        val commissionRateRequestDTO =
-            createCommissionRateRequest("8.8.8.8", "8.8.8.9", "P1M", LocalDateTime.of(2020, 10, 5, 8, 10))
+        val commissionRateRequestDTO = createCommissionRateRequest()
         val restriction = FreelanceLocation("IT")
         whenever(geoIpServiceMock.getCountryCode(any())).thenReturn("ES").thenReturn("IT")
 
