@@ -12,7 +12,13 @@ data class CommissionRateRequestDTO(
 data class Customer(val ip: String)
 data class Freelancer(val ip: String)
 data class Mission(val length: String)
-data class CommercialRelation(val firstMission: LocalDateTime, val lastMission: LocalDateTime?)
+data class CommercialRelation(val firstMission: LocalDateTime, val lastMission: LocalDateTime?) {
+    init {
+        lastMission?.let {
+            require(it.isAfter(firstMission)) { "The lastMission date must be after the firstMission date" }
+        }
+    }
+}
 
 data class CommissionRateResponseDTO(
     val fees: Int,

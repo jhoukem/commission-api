@@ -16,8 +16,7 @@ class CommissionControllerTest {
     @Test
     fun `get commission successful`() {
         // Given.
-        val commissionRateRequestDTO =
-            createCommissionRateRequest("8.8.8.8", "8.8.8.9", "P1M", LocalDateTime.of(2020, 10, 5, 8, 10))
+        val commissionRateRequestDTO = createCommissionRateRequest()
         val commissionRateResponseDTO = CommissionRateResponseDTO(10)
         whenever(commissionServiceMock.computeCommission(commissionRateRequestDTO)).thenReturn(commissionRateResponseDTO)
 
@@ -51,11 +50,11 @@ class CommissionControllerTest {
 
     companion object {
         fun createCommissionRateRequest(
-            customerIp: String,
-            freelanceIp: String,
-            missionLength: String,
-            firstMission: LocalDateTime,
-            lastMission: LocalDateTime? = null
+            customerIp: String = "8.8.8.8",
+            freelanceIp: String = "8.8.8.9",
+            missionLength: String = "P1M",
+            firstMission: LocalDateTime = LocalDateTime.of(2020, 5, 5, 8, 10),
+            lastMission: LocalDateTime? = LocalDateTime.of(2020, 5, 5, 8, 10)
         ): CommissionRateRequestDTO {
             return CommissionRateRequestDTO(
                 Customer(customerIp),

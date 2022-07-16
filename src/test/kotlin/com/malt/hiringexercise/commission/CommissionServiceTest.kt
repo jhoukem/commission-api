@@ -10,7 +10,6 @@ import org.mockito.Mockito.verify
 import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
-import java.time.LocalDateTime
 import java.time.Period
 
 class CommissionServiceTest {
@@ -25,8 +24,7 @@ class CommissionServiceTest {
         @Test
         fun `compute commission with rule matching`() {
             // Given.
-            val commissionRateRequestDTO =
-                createCommissionRateRequest("8.8.8.8", "8.8.8.9", "P1M", LocalDateTime.of(2020, 10, 5, 8, 10))
+            val commissionRateRequestDTO = createCommissionRateRequest()
             whenever(repositoryMock.findAllRules()).thenReturn(
                 listOf(
                     CommissionRule("rule1", Rate(8), CommercialRelationDuration(Period.of(1, 0, 0))),
@@ -46,8 +44,7 @@ class CommissionServiceTest {
         @Test
         fun `compute commission without rule matching`() {
             // Given.
-            val commissionRateRequestDTO =
-                createCommissionRateRequest("8.8.8.8", "8.8.8.9", "P1M", LocalDateTime.of(2020, 10, 5, 8, 10))
+            val commissionRateRequestDTO = createCommissionRateRequest()
             given(repositoryMock.findAllRules()).willReturn(
                 listOf(
                     CommissionRule("rule1", Rate(8), CommercialRelationDuration(Period.of(1, 0, 0))),

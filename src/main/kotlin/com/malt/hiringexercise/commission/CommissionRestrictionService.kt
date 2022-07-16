@@ -32,7 +32,7 @@ class CommissionRestrictionService constructor(private val geoIpService: GeoIpSe
         commissionRateRequestDTO: CommissionRateRequestDTO
     ): Boolean {
         val missionDuration = stringToPeriod(commissionRateRequestDTO.mission.length) ?: return false
-        return compareTo(missionDuration, restriction.greaterThan) > 0
+        return compareTo(missionDuration, restriction.greaterThan) >= 0
     }
 
     private fun commercialRelationDurationHandler(
@@ -45,7 +45,7 @@ class CommissionRestrictionService constructor(private val geoIpService: GeoIpSe
         val lastMission = commissionRateRequestDTO.commercialRelation.lastMission ?: return false
 
         val commercialRelationDuration = Period.between(firstMission.toLocalDate(), lastMission.toLocalDate())
-        return compareTo(commercialRelationDuration, restriction.greaterThan) > 0
+        return compareTo(commercialRelationDuration, restriction.greaterThan) >= 0
     }
 
     private fun stringToPeriod(periodAsString: String): Period? {
