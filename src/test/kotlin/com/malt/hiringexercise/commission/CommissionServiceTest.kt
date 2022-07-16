@@ -3,6 +3,7 @@ package com.malt.hiringexercise.commission
 import com.malt.hiringexercise.commission.CommissionControllerTest.Companion.createCommissionRateRequest
 import com.malt.hiringexercise.persistence.CommissionRuleRepository
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
 import org.mockito.Mockito.verify
@@ -18,46 +19,50 @@ class CommissionServiceTest {
     private val restrictionServiceMock: CommissionRestrictionService = mock()
     private val commissionService = CommissionService(repositoryMock, restrictionServiceMock)
 
-    @Test
-    fun `compute commission with rule matching`() {
-        // Given.
-        val commissionRateRequestDTO =
-            createCommissionRateRequest("8.8.8.8", "8.8.8.9", "P1M", LocalDateTime.of(2020, 10, 5, 8, 10))
-        whenever(repositoryMock.findAllRules()).thenReturn(
-            listOf(
-                CommissionRule("rule1", Rate(8), CommercialRelationDuration(Period.of(1, 0, 0))),
-                CommissionRule("rule2", Rate(18), CommercialRelationDuration(Period.of(10, 0, 0)))
+    @Nested
+    inner class ComputeCommission {
+
+        @Test
+        fun `compute commission with rule matching`() {
+            // Given.
+            val commissionRateRequestDTO =
+                createCommissionRateRequest("8.8.8.8", "8.8.8.9", "P1M", LocalDateTime.of(2020, 10, 5, 8, 10))
+            whenever(repositoryMock.findAllRules()).thenReturn(
+                listOf(
+                    CommissionRule("rule1", Rate(8), CommercialRelationDuration(Period.of(1, 0, 0))),
+                    CommissionRule("rule2", Rate(18), CommercialRelationDuration(Period.of(10, 0, 0)))
+                )
             )
-        )
-        // Matches the second rule.
-        whenever(restrictionServiceMock.validate(any(), any())).thenReturn(false).thenReturn(true)
+            // Matches the second rule.
+            whenever(restrictionServiceMock.validate(any(), any())).thenReturn(false).thenReturn(true)
 
-        // When.
-        val actual = commissionService.computeCommission(commissionRateRequestDTO)
+            // When.
+            val actual = commissionService.computeCommission(commissionRateRequestDTO)
 
-        // Then.
-        assertThat(actual).isEqualTo(CommissionRateResponseDTO(18, "rule2"))
-    }
+            // Then.
+            assertThat(actual).isEqualTo(CommissionRateResponseDTO(18, "rule2"))
+        }
 
-    @Test
-    fun `compute commission without rule matching`() {
-        // Given.
-        val commissionRateRequestDTO =
-            createCommissionRateRequest("8.8.8.8", "8.8.8.9", "P1M", LocalDateTime.of(2020, 10, 5, 8, 10))
-        given(repositoryMock.findAllRules()).willReturn(
-            listOf(
-                CommissionRule("rule1", Rate(8), CommercialRelationDuration(Period.of(1, 0, 0))),
-                CommissionRule("rule2", Rate(18), CommercialRelationDuration(Period.of(10, 0, 0)))
+        @Test
+        fun `compute commission without rule matching`() {
+            // Given.
+            val commissionRateRequestDTO =
+                createCommissionRateRequest("8.8.8.8", "8.8.8.9", "P1M", LocalDateTime.of(2020, 10, 5, 8, 10))
+            given(repositoryMock.findAllRules()).willReturn(
+                listOf(
+                    CommissionRule("rule1", Rate(8), CommercialRelationDuration(Period.of(1, 0, 0))),
+                    CommissionRule("rule2", Rate(18), CommercialRelationDuration(Period.of(10, 0, 0)))
+                )
             )
-        )
-        // Matches no rules.
-        whenever(restrictionServiceMock.validate(any(), any())).thenReturn(false)
+            // Matches no rules.
+            whenever(restrictionServiceMock.validate(any(), any())).thenReturn(false)
 
-        // When.
-        val actual = commissionService.computeCommission(commissionRateRequestDTO)
+            // When.
+            val actual = commissionService.computeCommission(commissionRateRequestDTO)
 
-        // Then.
-        assertThat(actual).isEqualTo(CommissionRateResponseDTO(10))
+            // Then.
+            assertThat(actual).isEqualTo(CommissionRateResponseDTO(10))
+        }
     }
 
     @Test

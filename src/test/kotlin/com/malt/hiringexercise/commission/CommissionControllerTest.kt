@@ -2,7 +2,9 @@ package com.malt.hiringexercise.commission
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
+import org.mockito.kotlin.whenever
 import java.time.LocalDateTime
 import java.time.Period
 
@@ -12,13 +14,12 @@ class CommissionControllerTest {
     private val commissionController = CommissionController(commissionServiceMock)
 
     @Test
-    fun getCommission() {
+    fun `get commission successful`() {
         // Given.
         val commissionRateRequestDTO =
             createCommissionRateRequest("8.8.8.8", "8.8.8.9", "P1M", LocalDateTime.of(2020, 10, 5, 8, 10))
         val commissionRateResponseDTO = CommissionRateResponseDTO(10)
-        `when`(commissionServiceMock.computeCommission(commissionRateRequestDTO))
-            .thenReturn(commissionRateResponseDTO)
+        whenever(commissionServiceMock.computeCommission(commissionRateRequestDTO)).thenReturn(commissionRateResponseDTO)
 
         // When.
         val actual = commissionController.getCommission(commissionRateRequestDTO)
@@ -29,7 +30,7 @@ class CommissionControllerTest {
     }
 
     @Test
-    fun addRule() {
+    fun `add rule successful`() {
         // Given.
         val createCommissionRuleDTO = CreateCommissionRuleDTO(
             "rule1",
