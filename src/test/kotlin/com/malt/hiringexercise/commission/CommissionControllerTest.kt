@@ -48,18 +48,20 @@ class CommissionControllerTest {
         verify(commissionServiceMock).create(createCommissionRuleDTO)
     }
 
-    private fun createCommissionRateRequest(
-        customerIp: String,
-        freelanceIp: String,
-        missionLength: String,
-        firstMission: LocalDateTime,
-        lastMission: LocalDateTime? = null
-    ): CommissionRateRequestDTO {
-        return CommissionRateRequestDTO(
-            Customer(customerIp),
-            Freelancer(freelanceIp),
-            Mission(missionLength),
-            CommercialRelation(firstMission, lastMission)
-        )
+    companion object {
+        fun createCommissionRateRequest(
+            customerIp: String,
+            freelanceIp: String,
+            missionLength: String,
+            firstMission: LocalDateTime,
+            lastMission: LocalDateTime? = null
+        ): CommissionRateRequestDTO {
+            return CommissionRateRequestDTO(
+                Customer(customerIp),
+                Freelancer(freelanceIp),
+                Mission(missionLength),
+                CommercialRelation(firstMission, lastMission)
+            )
+        }
     }
 }
