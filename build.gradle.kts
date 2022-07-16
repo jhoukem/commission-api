@@ -24,6 +24,8 @@ dependencies {
     implementation("com.konghq:unirest-java:3.13.10")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+    testImplementation("org.assertj:assertj-core:3.23.1")
 }
 
 sourceSets {
