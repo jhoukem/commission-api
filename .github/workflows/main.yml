@@ -33,21 +33,28 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
       - uses: actions/checkout@v3
-
       - name: Add the permission to the gradle runner
         run: chmod 755 ./gradlew
-
-      - name: Run the application unit tests
-        run: ./gradlew test
-        
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: gradle/gradle-build-action@v2
+        with:
+          arguments: test
   integrationTest:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
       - uses: actions/checkout@v3
-
       - name: Add the permission to the gradle runner
         run: chmod 755 ./gradlew
-
-      - name: Run the application integration tests
-        run: ./gradlew integrationTest
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: gradle/gradle-build-action@v2
+        with:
+          arguments: integrationTest # Run the application integration tests
