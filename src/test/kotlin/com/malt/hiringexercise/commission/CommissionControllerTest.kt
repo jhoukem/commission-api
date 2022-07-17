@@ -43,7 +43,7 @@ class CommissionControllerTest(@Autowired val mockMvc: MockMvc) {
 
         // Then.
         verify(commissionServiceMock).computeCommission(commissionRateRequestDTO)
-        assertThat(response.status).isEqualTo(HttpStatus.OK)
+        assertThat(response.status).isEqualTo(HttpStatus.OK.value())
         val actualResponse = mapper.readValue(response.contentAsString, CommissionRateResponseDTO::class.java)
         assertThat(actualResponse).isEqualTo(commissionRateResponseDTO)
     }
@@ -73,7 +73,7 @@ class CommissionControllerTest(@Autowired val mockMvc: MockMvc) {
 
         // Then.
         verify(commissionServiceMock).create(createCommissionRuleDTO)
-        assertThat(response.status).isEqualTo(HttpStatus.OK)
+        assertThat(response.status).isEqualTo(HttpStatus.OK.value())
     }
 
     companion object {
