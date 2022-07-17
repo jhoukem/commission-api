@@ -17,7 +17,7 @@ class CommissionService constructor(
             commissionRestrictionService.validate(rule.restriction, commissionRateRequestDTO)
         } ?: return DEFAULT_COMMISSION_RATE
 
-        return CommissionRateResponseDTO(commissionRule.rate.percent, commissionRule.name);
+        return CommissionRateResponseDTO(commissionRule.rate.percent, commissionRule.name)
     }
 
     fun create(createCommissionRuleDTO: CreateCommissionRuleDTO) {
@@ -26,7 +26,7 @@ class CommissionService constructor(
             Rate(createCommissionRuleDTO.rate),
             createCommissionRuleDTO.restriction
         )
-        this.repository.add(commissionRule)
+        repository.add(commissionRule)
     }
 
     companion object {
