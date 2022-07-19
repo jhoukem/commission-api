@@ -1,6 +1,6 @@
-package com.malt.hiringexercise.commission
+package com.mycompany.commission
 
-import com.malt.hiringexercise.geoip.GeoIpService
+import com.mycompany.geoip.GeoIpService
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 import java.time.Period

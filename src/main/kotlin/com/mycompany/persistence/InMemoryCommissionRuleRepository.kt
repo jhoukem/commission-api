@@ -1,6 +1,6 @@
-package com.malt.hiringexercise.persistence
+package com.mycompany.persistence
 
-import com.malt.hiringexercise.commission.*
+import com.mycompany.commission.*
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Repository

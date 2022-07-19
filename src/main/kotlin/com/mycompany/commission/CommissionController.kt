@@ -1,4 +1,4 @@
-package com.malt.hiringexercise.commission
+package com.mycompany.commission
 
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

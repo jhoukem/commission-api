@@ -1,4 +1,4 @@
-package com.malt.hiringexercise.geoip
+package com.mycompany.geoip
 
 interface GeoIpService {
     fun getCountryCode(ip: String): String?

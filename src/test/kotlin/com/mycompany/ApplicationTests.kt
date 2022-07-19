@@ -1,4 +1,4 @@
-package com.malt.hiringexercise
+package com.mycompany
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow

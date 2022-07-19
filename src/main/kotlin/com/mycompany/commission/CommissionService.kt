@@ -1,6 +1,6 @@
-package com.malt.hiringexercise.commission
+package com.mycompany.commission
 
-import com.malt.hiringexercise.persistence.CommissionRuleRepository
+import com.mycompany.persistence.CommissionRuleRepository
 import org.springframework.stereotype.Service
 
 @Service

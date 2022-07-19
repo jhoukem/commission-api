@@ -1,7 +1,7 @@
-package com.malt.hiringexercise.commission
+package com.mycompany.commission
 
-import com.malt.hiringexercise.commission.CommissionControllerTest.Companion.createCommissionRateRequest
-import com.malt.hiringexercise.geoip.GeoIpService
+import com.mycompany.commission.CommissionControllerTest.Companion.createCommissionRateRequest
+import com.mycompany.geoip.GeoIpService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

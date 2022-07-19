@@ -1,4 +1,4 @@
-package com.malt.hiringexercise.commission
+package com.mycompany.commission
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper

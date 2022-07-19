@@ -1,6 +1,6 @@
-package com.malt.hiringexercise.persistence
+package com.mycompany.persistence
 
-import com.malt.hiringexercise.commission.CommissionRule
+import com.mycompany.commission.CommissionRule
 
 interface CommissionRuleRepository {
     fun findAllRules(): List<CommissionRule>

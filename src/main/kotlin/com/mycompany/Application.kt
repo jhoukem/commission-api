@@ -1,4 +1,4 @@
-package com.malt.hiringexercise
+package com.mycompany
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

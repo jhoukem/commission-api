@@ -1,4 +1,4 @@
-package com.malt.hiringexercise.commission
+package com.mycompany.commission
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.JsonTypeName

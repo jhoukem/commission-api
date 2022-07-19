@@ -1,4 +1,4 @@
-package com.malt.hiringexercise.geoip
+package com.mycompany.geoip
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper

@@ -1,1 +1,1 @@
-rootProject.name = "hiring-exercise"
+rootProject.name = "commission-api"
